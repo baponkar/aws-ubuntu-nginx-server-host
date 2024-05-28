@@ -153,6 +153,8 @@ After making successfull ssh connection with your local linux machine and aws ec
 
 Success! Congratulations your public website is  live.
 
+## Add Domain in Your webservice:
+
 10. First you need to buy a domain from domain selling portal as for example I have purchase a domain from [here](https://www.namecheap.com/) with cheap price 101 rupee for one year. You can try Godady.com . Once There was Freenom site which gave free domain for one year but now I am not able to get a free domain from there. Custom Webpage with custom domain 'your_domain'.
 ```bash
     sudo mkdir -p /var/www/your_domain/html
@@ -161,7 +163,8 @@ Success! Congratulations your public website is  live.
     sudo nano /var/www/your_domain/html/index.html
 ```
 put custom webpage ```index.html``` file inside of /var/www/your_domain/html/
-```html
+
+```
     <html>
     <head>
         <title>Welcome to your_domain!</title>
