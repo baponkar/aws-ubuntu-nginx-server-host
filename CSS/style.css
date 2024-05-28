@@ -59,6 +59,8 @@ h2 {
     height: 100%;
 }
 
+
+
 pre {
     background-color: #333;
     padding: 2px;
@@ -120,42 +122,9 @@ img {
 
 
 
-.overlay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 9999;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
 
-.overlay.active {
-    opacity: 1;
-}
 
-.popup {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    animation: bounce 1s ease infinite alternate;
-}
 
-@keyframes bounce {
-    0% {
-        transform: translateY(-10px);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
 
 
  
