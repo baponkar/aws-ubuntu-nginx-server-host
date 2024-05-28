@@ -120,9 +120,11 @@
 
         <h2>Description :</h2>
         <p>In this article I am giving practical process to host a Ubuntu Nginx server in AWS Ubuntu EC2 Instance. You need an AWS account and a local Ubuntu Machine. I install Ubuntu environment in Windows via WSL.</p>
-
+        <h2>Introduction:</h2>
+        <p>When we open a url like <strong>http://12.45.60.23</strong> in a webbrowser then we send a http request to a machine or server which hosted at ip address 12.45.60.23. The web server also response a http value which render in our webbrowser.But if we open http://domain.com then web browser change corresponding domain into ip address and perform previous job.More secure request is https request.So Before hosting a web server you need a ip address and open portal so that server can receive request.If machine has firewall then firewall shoud allow http, https request for a working server.AWS, Google Cloud, Microsoft Azure are give some virtual machine with assigned ip where we can host our server.In this case I am going to host a linux based ingnx server.</p>
 
         <h2>Watch the Tutorial Video</h2>
+        <p>In this video tutorials I setup a ubuntu ec2 instance in aws and then host a ip address based web server on that instance.</p>
         <div class="video-container">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/tOw_9iFRzY4?rel=0" frameborder="0" allowfullscreen></iframe>
         </div>
@@ -352,6 +354,8 @@
             <li><code>/var/log/nginx/access.log</code>: Every request to your web server is recorded in this log file unless Nginx is configured to do otherwise.</li>
             <li><code>/var/log/nginx/error.log</code>: Any Nginx errors will be recorded in this log.</li>
         </ul>
+
+        <p>Now Check your online webpage at http://your_domain </p>
 
         <p><img src="Image/success_domain.png" alt="Success Domain Website"></p>
 
