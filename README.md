@@ -164,8 +164,10 @@ Success! Congratulations your public website is  live.
 ```
 put custom webpage ```index.html``` file inside of '/var/www/your_domain/html/'
 
-```(html)
-    <html>
+```
+    
+    (html)
+        <html>
         <head>
             <title>Welcome to your_domain!</title>
         </head>
@@ -173,7 +175,9 @@ put custom webpage ```index.html``` file inside of '/var/www/your_domain/html/'
             <h1>Success!  The your_domain server block is working!</h1>
         </body>
     </html>
+
 ```
+
 ```CTRL+X``` to save the file in nano editor.
 
 ```bash
