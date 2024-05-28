@@ -5,101 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Host a Website in Amazon Web Service (AWS)</title>
     <link rel="icon" href="Image/favicon.png" type="image/x-icon">
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            
-        }
-
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-
-        .container {
-            background-color: #222;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px;
-            max-width: 800px;
-            width: 100%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio (height/width * 100%) */
-            overflow: hidden;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        pre {
-            background-color: #333;
-            padding: 10px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-
-    
-
-        code {
-            color: #f8f8f2;
-        }
-
-        a {
-            color: #1e90ff;
-        }
-
-        img {
-            display: block;
-            margin: 10px auto; /* Center images */
-            max-width: 100%;
-            height: auto;
-            text-align: left;
-        }
-
-        .image-container {
-            text-align: left; /* Align images to the center */
-        }
-
-        .image-container img {
-            display: inline-block; /* Display images as inline-block elements */
-            margin: 0 1px; /* Add margin to separate images */
-            max-width: 100%; /* Ensure images don't exceed their container's width */
-            height: auto; /* Maintain aspect ratio */
-        }
+    <link rel="stylesheet" href="CSS/style.css">
 
 
-        /* Responsive design */
-        @media screen and (max-width: 600px) {
-            .container {
-                margin: 10px;
-            }
-            pre {
-                font-size: 14px;
-            }
-        }
+    <!--Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
 
-        @media screen and (max-width: 400px) {
-            .container {
-                padding: 10px;
-            }
-            pre {
-                font-size: 12px;
-            }
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400..700&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+
 
     <!--Prism to show colorful code-->
     <link rel="stylesheet" href="prism.css">
@@ -115,8 +33,13 @@
             <img src="https://img.shields.io/badge/Windows-11-maker?logo=windows&color=blue&cacheSeconds=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fwindows%2Fwsl%2Finstall" alt="Windows 11">
             <img src="https://img.shields.io/badge/nginx-server-maker?logo=nginx&color=blue&cacheSeconds=https%3A%2F%2Fnginx.org%2Fen%2F" alt="Nginx Server">
         </div>
+
+        <button id="goTopButton" onclick="goToTop()">Go to Top</button>
+        <button id="goBottomButton" onclick="goToBottom()">Go to Bottom</button>
+
+        <div id="readingProgress"></div>
         
-        <h1>Host a Website in Amazon Web Service (AWS)</h1>
+        <h1>Host a Nginx(EngineX) Web Server in Amazon Web Service (AWS)</h1>
 
         <h2>Description :</h2>
         <p>In this article I am giving practical process to host a Ubuntu Nginx server in AWS Ubuntu EC2 Instance. You need an AWS account and a local Ubuntu Machine. I install Ubuntu environment in Windows via WSL.</p>
@@ -152,9 +75,17 @@
 
         <h3>SSH Connection:</h3>
 
-        <p>If You are in <img src="https://img.shields.io/badge/Linux-maker?logo=linux&color=blue" alt="Linux"> then you don't need to install WSL but may need to install SSH by <code>sudo apt install ssh</code> and follow.</p>
+        <div class="image-container">
 
-        <p>If you are in <img src="https://img.shields.io/badge/Windows-11-maker?logo=windows&color=blue&cacheSeconds=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fwindows%2Fwsl%2Finstall" alt="Windows 11"> then you need to install Ubuntu system in your windows machine otherwise you are not able to access all bash commands in Windows terminal.</p>
+            <img src="https://img.shields.io/badge/Linux-maker?logo=linux&color=blue" alt="Linux">
+        </div>
+        <p>If You are in Linux machine then you don't need to install WSL but may need to install SSH by <code>sudo apt install ssh</code> and follow.</p>
+
+        <div class="image-container">
+            
+            <img src="https://img.shields.io/badge/Windows-11-maker?logo=windows&color=blue&cacheSeconds=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fwindows%2Fwsl%2Finstall" alt="Windows 11">
+        </div>
+        <p>If you are in Windows machine then you need to install Ubuntu system in your windows machine otherwise you are not able to access all bash commands in Windows terminal.</p>
 
         <p>You need to run following commands in your Windows Terminal which is started as <strong>Run as Administrator</strong></p>
 
@@ -187,7 +118,10 @@
             </code>
         </pre>
 
-        <p>If You see <code class="language-bash">ssh: connect to host ec2-**-***-***-***.ap-****-1.compute.amazonaws.com port 22: Network is unreachable</code> then check network connection, key value pair file location.</p>
+        <p>
+            If You see 
+            <code class="language-bash">ssh: connect to host ec2-**-***-***-***.ap-****-1.compute.amazonaws.com port 22: Network is unreachable</code> 
+            then check network connection, key value pair file location.</p>
 
         <hr>
 
@@ -365,5 +299,21 @@
         <h2>For Question :</h2>
         <p><img src="https://img.shields.io/badge/Gmail-baponkar%40gmail.com-red?logo=gmail" alt="Gmail"></p>
     </div>
+
+
+    <div class="overlay" id="overlay">
+        <div class="popup">
+            <h1>Welcome Visitors!</h1>
+            <p>Thanks for visiting our website. We're glad you're here!</p>
+            <button onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <script src="Script/welcome_visitor.js"></script>
+
+    <script src="Script/go_top_bottom.js"> </script>
+
+    <script src="Script/read_percentage.js"> </script>
+
 </body>
 </html>
