@@ -162,17 +162,17 @@ Success! Congratulations your public website is  live.
     sudo chmod -R 755 /var/www/your_domain
     sudo nano /var/www/your_domain/html/index.html
 ```
-put custom webpage ```index.html``` file inside of /var/www/your_domain/html/
+put custom webpage ```index.html``` file inside of '/var/www/your_domain/html/'
 
-```
+```(html)
     <html>
-    <head>
-        <title>Welcome to your_domain!</title>
-    </head>
-    <body>
-        <h1>Success!  The your_domain server block is working!</h1>
-    </body>
-</html>
+        <head>
+            <title>Welcome to your_domain!</title>
+        </head>
+        <body>
+            <h1>Success!  The your_domain server block is working!</h1>
+        </body>
+    </html>
 ```
 ```CTRL+X``` to save the file in nano editor.
 
