@@ -1,39 +1,48 @@
+/* General styling for HTML and body */
 html, body {
     height: 100%;
     margin: 0;
-    
-}
-
-body {
+    padding: 0;
+    font-family: Arial, sans-serif;
     background-color: black;
     color: white;
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    border-color: #333;
-    
+    font-size: 16px; /* Base font size */
 }
 
-p {
+/* Body styling */
+body {
+    padding: 20px;
+}
+
+/* Paragraph styling */
+p, .highlight {
     font-family: 'Roboto', sans-serif;
     margin: auto;
     padding: 5px;
+    font-size: 1rem; /* Relative to base font size */
 }
 
+.highlight {
+    background-color: #2cb91c;
+}
+
+/* Header styling */
 h1 {
     font-family: "Edu TAS Beginner", cursive;
     color: #1e90ff;
     background-color: #f8f8f2;
     border-radius: 4%;
     padding: 2%;
-    border-color: #333;
+    font-size: 2.5rem; /* Larger font size */
 }
 
 h2 {
     color: coral;
     font-family: "Edu TAS Beginner", cursive;
+    font-size: 2rem; /* Medium font size */
 }
 
-
+/* Container styling */
 .container {
     background-color: #222;
     border-radius: 15px;
@@ -44,10 +53,11 @@ h2 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+/* Video container styling */
 .video-container {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio (height/width * 100%) */
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
     overflow: hidden;
 }
 
@@ -59,47 +69,72 @@ h2 {
     height: 100%;
 }
 
+/* Codebox styling */
+.codebox {
+    background-color: #444;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(191, 189, 189, 0.771);
+    font-family: 'Courier New', Courier, monospace;
+    margin: 5%;
+}
 
+.codebox header {
+    text-align: right;
+    padding: 12px 0;
+    background-color: #0f0e0e;
+    border-radius: 12px 12px 0 0;
+}
+
+.codebox header span {
+    height: 16px;
+    width: 16px;
+    margin-right: 2%;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.codebox header span:nth-child(1) { background-color: #ff5c5c; }
+.codebox header span:nth-child(2) { background-color: #ffbd4c; }
+.codebox header span:nth-child(3) { background-color: #00ca56; }
 
 pre {
     background-color: #333;
-    padding: 2px;
-    border-radius: 5px;
+    color: #f8f8f2;
+    font-size: 1rem; /* Base font size for code */
     overflow-x: auto;
 }
 
-
-
 code {
-    color: #f8f8f2;
+    font-family: 'Times New Roman', Times, serif;
 }
 
-
+/* Link styling */
 a {
     color: #1e90ff;
 }
 
+/* Image styling */
 img {
     display: block;
-    margin: 10px auto; /* Center images */
+    margin: 10px auto;
     max-width: 100%;
     height: auto;
-    text-align: left;
+    box-shadow: 0 0 10px rgba(191, 189, 189, 0.771);
 }
 
-
-
+/* Image container styling */
 .image-container {
-    text-align: left; /* Align images to the center */
+    text-align: left;
+    margin: 10px;
+    padding: 10px;
 }
 
 .image-container img {
-    display: inline-block; /* Display images as inline-block elements */
-    margin: 0 1px; /* Add margin to separate images */
-    max-width: 100%; /* Ensure images don't exceed their container's width */
-    height: auto; /* Maintain aspect ratio */
+    display: inline-block;
+    margin: 0 1px;
+    max-width: 100%;
+    height: auto;
 }
-
 
 /* Responsive design */
 @media screen and (max-width: 600px) {
@@ -107,7 +142,16 @@ img {
         margin: 10px;
     }
     pre {
-        font-size: 14px;
+        font-size: 0.875rem; /* Slightly smaller font size */
+    }
+    p, .highlight {
+        font-size: 0.875rem; /* Adjusted paragraph font size */
+    }
+    h1 {
+        font-size: 2rem; /* Adjusted header font size */
+    }
+    h2 {
+        font-size: 1.5rem; /* Adjusted header font size */
     }
 }
 
@@ -116,19 +160,20 @@ img {
         padding: 10px;
     }
     pre {
-        font-size: 12px;
+        font-size: 0.75rem; /* Smaller font size */
+    }
+    p, .highlight {
+        font-size: 0.75rem; /* Adjusted paragraph font size */
+    }
+    h1 {
+        font-size: 1.75rem; /* Adjusted header font size */
+    }
+    h2 {
+        font-size: 1.25rem; /* Adjusted header font size */
     }
 }
 
-
-
-
-
-
-
-
- 
-
+/* Button styling */
 button {
     background-color: #1e90ff;
     color: #fff;
@@ -144,6 +189,7 @@ button:hover {
     background-color: #007bff;
 }
 
+/* Go Top/Bottom button styling */
 #goTopButton, #goBottomButton {
     display: none;
     position: fixed;
@@ -163,6 +209,7 @@ button:hover {
     background-color: #007bff;
 }
 
+/* Reading progress bar styling */
 #readingProgress {
     position: fixed;
     top: 0;

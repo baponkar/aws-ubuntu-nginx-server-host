@@ -61,15 +61,22 @@
             <li>After creating Ubuntu EC2 Instances Run following commands in web based EC2 Terminal</li>
         </ol>
 
-        <pre>
-            <code class="language-bash">
-                sudo apt update
-                sudo apt upgrade
-                sudo apt autoclean
-                sudo apt autoremove
-                sudo apt install ssh
-            </code>
-        </pre>
+        <div class="codebox">
+            <header>
+                <span></span>
+                <span></span>
+                <span></span>
+              </header>
+            <pre>
+                <code>
+                    sudo apt update
+                    sudo apt upgrade
+                    sudo apt autoclean
+                    sudo apt autoremove
+                    sudo apt install ssh
+                </code>
+            </pre>
+        </div>
 
         <h2>Installing and Run NGINX Server in Ubuntu 24.4 LTS</h2>
 
@@ -105,22 +112,30 @@
 
         <p>Suppose You have created and downloaded "keypair.pem" and your public dns id is public_dns then</p>
 
-        <pre>
-            <code class="language-bash">
-                cd keypair.pem_directory
-                chmod 400 "keypair.pem" #making executable
-                sudo apt update #for updating packages
-                sudo apt upgrade -y #for upgrading packages
-                sudo apt autoremove -y #for remove broken packages
-                sudo apt autoclean -y #clean broken packages
-                sudo apt install ssh #installing ssh in system
-                sudo ssh -i "keypair.pem" public_dns #access remotely EC2
-            </code>
-        </pre>
+        <div class="codebox">
+            <header>
+                <span></span>
+                <span></span>
+                <span></span>
+              </header>
+            <pre>
+                <code>
+                    cd keypair.pem_directory
+                    chmod 400 "keypair.pem" #making executable
+                    sudo apt update #for updating packages
+                    sudo apt upgrade -y #for upgrading packages
+                    sudo apt autoremove -y #for remove broken packages
+                    sudo apt autoclean -y #clean broken packages
+                    sudo apt install ssh #installing ssh in system
+                    sudo ssh -i "keypair.pem" public_dns #access remotely EC2
+                </code>
+            </pre>
+        </div>
+        
 
         <p>
             If You see 
-            <code class="language-bash">ssh: connect to host ec2-**-***-***-***.ap-****-1.compute.amazonaws.com port 22: Network is unreachable</code> 
+            <code>ssh: connect to host ec2-**-***-***-***.ap-****-1.compute.amazonaws.com port 22: Network is unreachable</code> 
             then check network connection, key value pair file location.</p>
 
         <hr>
@@ -130,158 +145,280 @@
 
         <h3>Installing nginx</h3>
 
-        <pre>
-            <code class="language-bash">
-                sudo apt update
-                sudo apt upgrade
-                sudo apt install nginx
-            </code>
-        </pre>
+        <div class="codebox">
+            <header>
+                <span></span>
+                <span></span>
+                <span></span>
+              </header>
+            <pre>
+                <code>
+                    sudo apt update
+                    sudo apt upgrade
+                    sudo apt install nginx
+                </code>
+            </pre>
+        </div>
 
         <h3>List of applications are allow by ufw (Firewall service)</h3>
 
-        <pre>
-            <code class="language-bash">
-                sudo ufw app list
 
-                Output
-                Available applications:
-                Nginx Full
-                Nginx HTTP
-                Nginx HTTPS
-                OpenSSH
-            </code>
-        </pre>
+        <div class="codebox">
+            <header>
+                <span></span>
+                <span></span>
+                <span></span>
+              </header>
+            <pre>
+                <code>
+                    sudo ufw app list
+
+                    Output
+                    Available applications:
+                    Nginx Full
+                    Nginx HTTP
+                    Nginx HTTPS
+                    OpenSSH
+                </code>
+            </pre>
+        </div>
 
         <h3>Allowing Traffic only on port 80</h3>
         <p>If you want to open 443 then you need to type <code>sudo ufw allow 'Nginx Full'</code></p>
+        <p class="highlight">You must add <code>sudo ufw allow 'OpenSSH'</code> otherwise you not made ssh connection again.</p>
 
-        <pre>
-            <code class="language-bash">
-                sudo ufw allow 'Nginx HTTP'
-                sudo ufw enable
-            </code>
-        </pre>
+        <div class="codebox">
+            <header>
+                <span></span>
+                <span></span>
+                <span></span>
+              </header>
+            <pre>
+                <code>
+                    sudo ufw allow 'Nginx HTTP'
+                    sudo ufw enable
+                </code>
+            </pre>
+        </div>
 
         <h3>Checking Status</h3>
 
-        <pre>
-            <code class="language-bash">
-                sudo ufw status
+        <div class="codebox">
+            <header>
+                <span></span>
+                <span></span>
+                <span></span>
+              </header>
+            <pre>
+                <code>
+                    sudo ufw status
 
-                Output
-                Status: active
+                    Output
+                    Status: active
 
-                To                         Action      From
-                --                         ------      ----
-                OpenSSH                    ALLOW       Anywhere                  
-                Nginx HTTP                 ALLOW       Anywhere                  
-                OpenSSH (v6)               ALLOW       Anywhere (v6)             
-                Nginx HTTP (v6)            ALLOW       Anywhere (v6)
-            </code>
-        </pre>
+                    To                         Action      From
+                    --                         ------      ----
+                    OpenSSH                    ALLOW       Anywhere                  
+                    Nginx HTTP                 ALLOW       Anywhere                  
+                    OpenSSH (v6)               ALLOW       Anywhere (v6)             
+                    Nginx HTTP (v6)            ALLOW       Anywhere (v6)
+                </code>
+            </pre>
+        </div>
 
         <p>If output is shown <code>inactive</code> then you need to enable ufw in your instance by <code>sudo ufw enable</code>. After that your EC2 instance not work in browser then you need to access the EC2 instance by SSH through Ubuntu shell.</p>
 
         <h3>Checking Web Server</h3>
 
-        <pre>
-            <code class="language-bash">
-                systemctl status nginx
+        <div class="codebox">
+            <header>
+                <span></span>
+                <span></span>
+                <span></span>
+              </header>
+            <pre>
+                <code>
+                    systemctl status nginx
 
-                Output
-                ● nginx.service - A high performance web server and a reverse proxy server
-                Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
-                Active: active (running) since Fri 2020-04-20 16:08:19 UTC; 3 days ago
-                    Docs: man:nginx(8)
-                Main PID: 2369 (nginx)
-                    Tasks: 2 (limit: 1153)
-                Memory: 3.5M
-                CGroup: /system.slice/nginx.service
-                        ├─2369 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
-                        └─2380 nginx: worker process
-            </code>
-        </pre>
+                    Output
+                    ● nginx.service - A high performance web server and a reverse proxy server
+                    Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+                    Active: active (running) since Fri 2020-04-20 16:08:19 UTC; 3 days ago
+                        Docs: man:nginx(8)
+                    Main PID: 2369 (nginx)
+                        Tasks: 2 (limit: 1153)
+                    Memory: 3.5M
+                    CGroup: /system.slice/nginx.service
+                            ├─2369 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+                            └─2380 nginx: worker process
+                </code>
+            </pre>
+        </div>
 
         <h3>Get Web Server Public IP</h3>
 
-        <pre><code class="language-bash">curl -4 icanhazip.com</code></pre>
+        <pre><code>curl -4 icanhazip.com</code></pre>
 
         <h3>See Your Website on <code>http://your_server_ip</code></h3>
 
         <h3>You will see</h3>
 
-        <p><img src="./Image/nginx_server_welcome.png" alt="NGINX Welcome Server"></p>
+        <p><img src="./Image/live_nginx_website_screenshot.png" alt="NGINX Welcome Server"></p>
 
         <p>Success! Congratulations your public website is live.</p>
+        <hr>
+        <hr>
 
-        <h2>Add Domain in Your webservice:</h2>
+
+        <h2>Purchasing a web domain</h2>
+        <p>I am going to buy a domain with name <strong>gamingjam.shop</strong> from <a href="https://www.godaddy.com">Godaddy.com</a></p>
+        <div class="image-container">
+            <img src="Image/godaddy_purchase_domain.png">
+        </div>
+
+
+        <hr>
+        <hr>
+
+        <h2>Add this domain into aws Route53</h2>
+        <p>To implement dns based webserver into aws ec2 instance then we need to make Route53 HostedZone.After creating successful hostedzone you will receive list of nameservers address which will need to put into GoDaddy domain settings.After creating Hosted Zone you need to create two record one for www.gamingjam.shop and another for gamingjam.shop .</p>
+        <div class="image-container">
+            <img src="Image/created_hosted_zone.png">
+        </div>
+        <div class="image-container">
+            <img src="Image/created_hosted_zone1.png">
+        </div>
+        One blank subdomain and public ip address and all others are default
+        <div class="image-container">
+            <img src="Image/create_record.png">
+        </div>
+        Another with www subdomain and public ip address and all others are default
+        <div class="image-container">
+            <img src="Image/create_record1.png">
+        </div>
+        <p>After creation Record create You will see aws NameServer Address </p>
+        <div class="image-container">
+            <img src="Image/aws_nameserver_address.png">
+        </div>
+        <hr>
+        <hr>
+
+
+        <h2>Now Set DNS Record in GoDaddy</h2>
+        <p>Go to GoDaddy and sign in and go to Domain Section and find your domains Manage Your Domain section. Click The desired domain name in my case gamingjam.shop .</p>
+        <div class="image-container">
+            <img src="Image/manage_your_domain.png">
+        </div>
+        <p>After selecting the domain name go to DNS and then go to NameServer and Edit NameServer with I'll use my own nameservers and input the dns names found from aws Route53 hostedzone.Wait couple of minutes. </p>
+        <div class="image-container">
+            <img src="Image/edit_nameserver.png">
+        </div>
+        <p>Now You can abel to see website http://3.109.208.163/, http://www.gamingjam.shop, and http://gamingjam.shop sites.</p>
+        <div class="image-container">
+            <img src="Image/live_gamingjam.shop.png">
+        </div>
+
+
+
+
+
+        <hr>
+        <hr>
+        <h2>Now create Custom Website for gamingjam.shop in EC2.</h2>
 
         <p>First you need to buy a domain from domain selling portal as for example I have purchased a domain from <a href="https://www.namecheap.com/">here</a> with cheap price 101 rupees for one year. You can try GoDaddy.com. Once there was Freenom site which gave free domain for one year but now I am not able to get a free domain from there. Custom Webpage with custom domain 'your_domain'.</p>
 
-        <pre>
-            <code class="language-bash">
-                sudo mkdir -p /var/www/your_domain/html
-                sudo chown -R $USER:$USER /var/www/your_domain/html
-                sudo chmod -R 755 /var/www/your_domain
-                sudo nano /var/www/your_domain/html/index.html
-            </code>
-        </pre>
+        <div class="codebox">
+            <header>
+                <span></span>
+                <span></span>
+                <span></span>
+              </header>
+            <pre>
+                <code>
+                    sudo mkdir -p /var/www/your_domain/html
+                    sudo chown -R $USER:$USER /var/www/your_domain/html
+                    sudo chmod -R 755 /var/www/your_domain
+                    sudo nano /var/www/your_domain/html/index.html
+                </code>
+            </pre>
+        </div>
 
         <p>Put custom webpage <code>index.html</code> file inside of <code>/var/www/your_domain/html/</code></p>
 
-        <pre>
-            <code class="language-html">
-                &lt;!DOCTYPE html&gt;
-                &lt;html lang="en"&gt;
-                    &lt;head&gt;
-                        &lt;title&gt;Welcome to your_domain!&lt;/title&gt;
-                    &lt;/head&gt;
-                    &lt;body&gt;
-                        &lt;h1&gt;Success! The your_domain server block is working!&lt;/h1&gt;
-                    &lt;/body&gt;
-                &lt;/html&gt;
-            </code>
-        </pre>
+        <div class="codebox">
+            <header>
+                <span></span>
+                <span></span>
+                <span></span>
+              </header>
+            <pre>
+                <code class="language-html">
+                    &lt;!DOCTYPE html&gt;
+                    &lt;html lang="en"&gt;
+                        &lt;head&gt;
+                            &lt;title&gt;Welcome to your_domain!&lt;/title&gt;
+                        &lt;/head&gt;
+                        &lt;body&gt;
+                            &lt;h1&gt;Success! The your_domain server block is working!&lt;/h1&gt;
+                        &lt;/body&gt;
+                    &lt;/html&gt;
+                </code>
+            </pre>
+        </div>
 
         <p>Press <code>CTRL+X</code> to save the file in nano editor.</p>
 
-        <pre><code class="language-bash">sudo nano /etc/nginx/sites-available/your_domain</code></pre>
+        <pre><code>sudo nano /etc/nginx/sites-available/your_domain</code></pre>
 
         <p>Change <code>your_domain</code> with actual domain name.</p>
 
-        <pre>
-            <code class="language-bash">
-                server {
-                    listen 80;
-                    listen [::]:80;
+        <div class="codebox">
+            <header>
+                <span></span>
+                <span></span>
+                <span></span>
+              </header>
+            <pre>
+                <code>
+                    server {
+                        listen 80;
+                        listen [::]:80;
 
-                    root /var/www/your_domain/html;
-                    index index.html index.htm index.nginx-debian.html;
+                        root /var/www/your_domain/html;
+                        index index.html index.htm index.nginx-debian.html;
 
-                    server_name your_domain www.your_domain;
+                        server_name your_domain www.your_domain;
 
-                    location / {
-                            try_files $uri $uri/ =404;
+                        location / {
+                                try_files $uri $uri/ =404;
+                        }
                     }
-                }
-            </code>
-        </pre>
+                </code>
+            </pre>
+        </div>
 
         <p>Creating a link of <code>/etc/nginx/sites-available/your_domain</code> into <code>/etc/nginx/sites-enabled/</code> location.</p>
 
-        <pre><code class="language-bash">sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/</code></pre>
+        <pre><code>sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/</code></pre>
 
         <pre><code>sudo nano /etc/nginx/nginx.conf</code></pre>
 
         <p>Remove <code>#</code> in front of <code>server_names_hash_bucket_size</code>.</p>
 
-        <pre>
-            <code class="language-bash">
-                sudo nginx -t #Checking nginx syntax
-                sudo systemctl restart nginx #restart nginx
-            </code>
-        </pre>
+        <div class="codebox">
+            <header>
+                <span></span>
+                <span></span>
+                <span></span>
+              </header>
+            <pre>
+                <code>
+                    sudo nginx -t #Checking nginx syntax
+                    sudo systemctl restart nginx #restart nginx
+                </code>
+            </pre>
+        </div>
 
         <h2>Server Log</h2>
         <ul>
@@ -291,10 +428,12 @@
 
         <p>Now Check your online webpage at http://your_domain </p>
 
-        <p><img src="Image/success_domain.png" alt="Success Domain Website"></p>
+        <p><img src="Image/domain_block_success.png" alt="Success Domain Website"></p>
 
         <h2>Credit</h2>
-        <p><img src="https://img.shields.io/badge/digitalOcean-article-maker?logo=digitalocean&logoColor=white&labelColor=blue&color=black&cacheSeconds=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-install-nginx-on-ubuntu-20-04" alt="Digital Ocean Article"></p>
+        <a href="https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04"><img src="https://img.shields.io/badge/digitalOcean-article-maker?logo=digitalocean&logoColor=white&labelColor=blue&color=black&cacheSeconds=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-install-nginx-on-ubuntu-20-04" alt="Digital Ocean Article"></a>
+        <a href="https://www.freecodecamp.org/news/how-to-connect-a-domain-to-a-website-hosted-on-aws-ec2/#:~:text=Here%20they%20are%3A%201%20Step1%3A%20Set%20up%20your,domain%20provider%204%20Step%204%3A%20Wait%20for%20propagation"><img src="https://img.shields.io/badge/freecodecamp-article-maker?logo=freecodecamp&color=red"></a>
+        </a>
 
         <h2>For Question :</h2>
         <p><img src="https://img.shields.io/badge/Gmail-baponkar%40gmail.com-red?logo=gmail" alt="Gmail"></p>
